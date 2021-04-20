@@ -13,11 +13,11 @@ export default function ChatRoom(props) {
   }
 
   function handleRoomChange(e) {
-    setName(e.target.value);
+    setRoom(e.target.value);
   }
 
-  function handleSubmit(e) {
-    if (!(name && room)) {
+  function handleSubmit() {
+    if (name && room) {
       setOpenRoom(true);
     }
   }
