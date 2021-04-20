@@ -32,6 +32,6 @@ export default function ChatRoom(props) {
       handleSubmit={handleSubmit}
     />
   ) : (
-    <Chat />
+    <Chat name={name} setName={setName} room={room} setRoom={setRoom} />
   );
 }
