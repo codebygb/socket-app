@@ -5,7 +5,7 @@ import ChatRoom from "./components/ChatRoom/ChatRoom";
 
 import "./App.css";
 
-const App = (props) => {
+const App = () => {
   return (
     <Router>
       <Route path="/" exact component={ChatRoom} />

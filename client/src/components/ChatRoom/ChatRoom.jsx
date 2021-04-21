@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Join from "../Join/Join";
 import Chat from "../Chat/Chat";
 
-export default function ChatRoom(props) {
+export default function ChatRoom() {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [openRoom, setOpenRoom] = useState(false);

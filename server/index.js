@@ -30,6 +30,9 @@ io.on("connection", (socket) => {
       user: "admin",
       text: `Welcome to ${room}, ${user}`,
     });
+    socket.broadcast
+      .to(room)
+      .emit("message", { user: "admin", text: `${user} has joined.` });
     socket.join(user.room);
   });
   socket.on("disconnect", () => {

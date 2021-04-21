@@ -8,14 +8,14 @@ let socket;
 const ENDPOINT = "localhost:5000";
 
 function Chat(props) {
-  const { name, setName, room, setRoom } = props;
+  const {
+    name,
+    room
+  } = props;
 
   useEffect(() => {
-    console.log("INIO");
     socket = io(ENDPOINT);
-    socket.emit("join", { name, room }, () => {
-      console.log("Hello" + name);
-    });
+    socket.emit("join", { name, room }, () => {});
     return () => {
       socket.emit("disconnect");
       socket.off();
