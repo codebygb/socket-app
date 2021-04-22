@@ -1,8 +1,11 @@
-import { TextField } from "@material-ui/core";
+// @ts-nocheck
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { io } from "socket.io-client";
+import ChatBar from "../ChatBar/ChatBar";
+import Input from "../Input/Input";
+import Messages from "../Messages/Messages";
 import "./Chat.css";
 
 let socket;
@@ -11,18 +14,18 @@ const ENDPOINT = "localhost:5000";
 function Chat() {
   const location = useLocation();
 
-  const state = location.state;
+  const { name, room } = location.state;
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     socket = io(ENDPOINT);
-    socket.emit("join", state, () => {});
+    socket.emit("join", { name, room }, () => {});
     return () => {
-      socket.emit("disconnect");
+      socket.emit("left");
       socket.off();
     };
-  }, [ENDPOINT, state]);
+  }, [ENDPOINT, name]);
 
   useEffect(() => {
     socket.on("message", (message) => setMessages([...messages, message]));
@@ -35,19 +38,18 @@ function Chat() {
     }
   };
 
-  console.log(message, messages);
   return (
-    <div>
-      <div>
-        <TextField
-          label="Type Message"
-          variant="outlined"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") sendMessage(e);
-          }}
-        />
+    <div className="root-container">
+      <div className="chat-container">
+        <ChatBar name={name} room={room} />
+        <Messages messages={messages} currUser={name} />
+        <div className="message-input">
+          <Input
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+          />
+        </div>
       </div>
     </div>
   );

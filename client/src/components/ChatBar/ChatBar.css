@@ -1,0 +1,22 @@
+.chatbar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 30% 30% 30% 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+.uname {
+  align-self: center;
+  margin-left: 4px;
+}
+
+.rname {
+  align-self: center;
+  text-align: right;
+  margin-right: 4px;
+}
+
+.avatar {
+  margin-right: 4px;
+}

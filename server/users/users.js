@@ -2,13 +2,12 @@ const users = [];
 
 const addUser = (id, username, room) => {
   const uname = username.replace(" ", "").toLowerCase();
-  const rname = room.replace(" ", "").toLowerCase();
 
   if (users.findIndex((u) => u.name === uname) !== -1) {
     return { error: "Username already taken." };
   }
 
-  const user = { name: uname, room: rname, id };
+  const user = { name: username, room, id };
   users.push(user);
   return { user };
 };

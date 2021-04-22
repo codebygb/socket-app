@@ -29,24 +29,29 @@ io.on("connection", (socket) => {
     socket.emit("message", {
       user: "admin",
       text: `Welcome to ${room}, ${name}`,
+      ts: +new Date(),
     });
-    socket.broadcast
-      .to(room)
-      .emit("message", { user: "admin", text: `${name} has joined.` });
-    socket.join(user.room);
+    socket.join(room);
+    socket.broadcast.to(room).emit("message", {
+      user: "admin",
+      text: `${name} has joined.`,
+      ts: +new Date(),
+    });
     cb();
   });
 
   socket.on("sendMessage", (message, cb) => {
     const user = getUser(socket.id);
+
     io.to(user.room).emit("message", {
       user: user.name,
       text: message,
+      ts: +new Date(),
     });
     cb();
   });
 
-  socket.on("disconnect", () => {
+  socket.on("left", () => {
     console.log("User Left");
   });
 });
