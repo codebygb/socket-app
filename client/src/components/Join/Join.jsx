@@ -1,12 +1,26 @@
-import React from "react";
-
-import { TextField, Button } from "@material-ui/core";
-import PropTypes from "prop-types";
-
+import { Button, TextField } from "@material-ui/core";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
 import "./Join.css";
 
-function Join(props) {
-  const { handleNameChange, handleRoomChange, handleSubmit } = props;
+function Join() {
+  const history = useHistory();
+  const [name, setName] = useState("");
+  const [room, setRoom] = useState("");
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleRoomChange(e) {
+    setRoom(e.target.value);
+  }
+
+  function handleSubmit() {
+    if (name && room) {
+      history.push({ pathname: "/Chat", state: { name, room } });
+    }
+  }
 
   return (
     <div className="main-container">
@@ -45,11 +59,5 @@ function Join(props) {
     </div>
   );
 }
-
-Join.propTypes = {
-  handleNameChange: PropTypes.func,
-  handleRoomChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-};
 
 export default Join;

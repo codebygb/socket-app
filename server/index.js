@@ -24,19 +24,30 @@ app.use(router);
 
 io.on("connection", (socket) => {
   socket.on("join", ({ name, room }, cb) => {
-    const { user, error } = addUser(socket.id, user, name);
+    const { user, error } = addUser(socket.id, name, room);
     if (error) return cb(error);
     socket.emit("message", {
       user: "admin",
-      text: `Welcome to ${room}, ${user}`,
+      text: `Welcome to ${room}, ${name}`,
     });
     socket.broadcast
       .to(room)
-      .emit("message", { user: "admin", text: `${user} has joined.` });
+      .emit("message", { user: "admin", text: `${name} has joined.` });
     socket.join(user.room);
+    cb();
   });
+
+  socket.on("sendMessage", (message, cb) => {
+    const user = getUser(socket.id);
+    io.to(user.room).emit("message", {
+      user: user.name,
+      text: message,
+    });
+    cb();
+  });
+
   socket.on("disconnect", () => {
-    console.log("Disconnected");
+    console.log("User Left");
   });
 });
 
