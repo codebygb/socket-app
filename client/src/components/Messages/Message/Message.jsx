@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Message.css";
 
 export default function Message(props) {
-  const { message, currUser, key } = props;
+  const { message, currUser } = props;
   const { user, ts, text } = message;
   const [isCurrUser] = useState(currUser === user);
 
