@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 export default function Messages(props) {
   const { messages, currUser } = props;
   return (
-    <Paper>
+    <Paper className="messages">
       {messages.map((m) => (
         <Fragment key={m.ts}>
           <Message currUser={currUser} message={m} />
