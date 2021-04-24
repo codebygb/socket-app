@@ -9,7 +9,8 @@ import Messages from "../Messages/Messages";
 import "./Chat.css";
 
 let socket;
-const ENDPOINT = process.env.ENDPOINT;
+const HOST = process.env.HOST;
+const PORT = process.env.PORT;
 
 function Chat() {
   const location = useLocation();
@@ -19,7 +20,7 @@ function Chat() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(HOST + ":" + PORT);
     socket.emit("join", { name, room }, () => {});
     return () => {
       socket.emit("left");
