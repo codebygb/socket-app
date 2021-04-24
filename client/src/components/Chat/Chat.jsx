@@ -9,8 +9,9 @@ import Messages from "../Messages/Messages";
 import "./Chat.css";
 
 let socket;
-const HOST = process.env.HOST;
-const PORT = process.env.PORT;
+
+const ENDPOINT = process.env.REACT_APP_SERVERURL;
+console.log(ENDPOINT);
 
 function Chat() {
   const location = useLocation();
@@ -20,13 +21,13 @@ function Chat() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket = io(HOST + ":" + PORT);
+    socket = io(ENDPOINT);
     socket.emit("join", { name, room }, () => {});
     return () => {
       socket.emit("left");
       socket.off();
     };
-  }, [HOST, name]);
+  }, [ENDPOINT, name]);
 
   useEffect(() => {
     socket.on("message", (message) => setMessages([...messages, message]));
@@ -62,5 +63,4 @@ Chat.propTypes = {
   room: PropTypes.string,
   setRoom: PropTypes.func,
 };
-
 export default Chat;
