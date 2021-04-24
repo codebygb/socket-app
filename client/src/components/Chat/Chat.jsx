@@ -26,7 +26,7 @@ function Chat() {
       socket.emit("left");
       socket.off();
     };
-  }, [ENDPOINT, name]);
+  }, [HOST, name]);
 
   useEffect(() => {
     socket.on("message", (message) => setMessages([...messages, message]));
