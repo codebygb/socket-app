@@ -61,4 +61,5 @@ Chat.propTypes = {
   room: PropTypes.string,
   setRoom: PropTypes.func,
 };
+
 export default Chat;
