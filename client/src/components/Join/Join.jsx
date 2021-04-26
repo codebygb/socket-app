@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./Join.css";
 import ChatImage from "../../images/ChatImage";
+import rocket from "../../images/rocket.png";
+import chat from "../../images/chat.png";
 
 function Join() {
   const history = useHistory();
@@ -24,36 +26,35 @@ function Join() {
   }
 
   return (
-    <div className="main-container">
-      <div className="img-container">
-        <ChatImage />
+    <div className="container">
+      <div className="img">
+        <img src={chat} alt="login-chat-img" className="login-chat" />
       </div>
-      <div className="container">
-        <div className="login-container">
-          <div>
-            <h1>JOIN</h1>
+      <div className="login-content">
+        <img src={rocket} alt="login-rocket-img" className="login-rocket" />
+        <div className="login-form">
+          <div className="input">
+            <TextField
+              size="medium"
+              variant="outlined"
+              label="Name"
+              className="input"
+              type="text"
+              onChange={handleNameChange}
+              id="name"
+            />
           </div>
-          <TextField
-            fullWidth
-            size="medium"
-            variant="outlined"
-            label="Name"
-            className="input"
-            type="text"
-            onChange={handleNameChange}
-            id="name"
-          />
-          <TextField
-            fullWidth
-            variant="outlined"
-            className="input"
-            label="Room"
-            type="text"
-            onChange={handleRoomChange}
-            id="room"
-          />
+          <div className="input">
+            <TextField
+              variant="outlined"
+              className="input"
+              label="Room"
+              type="text"
+              onChange={handleRoomChange}
+              id="room"
+            />
+          </div>
           <Button
-            fullWidth
             className="button"
             variant="outlined"
             color="primary"
