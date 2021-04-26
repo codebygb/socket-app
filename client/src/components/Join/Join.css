@@ -1,32 +1,45 @@
 .main-container {
-    height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to left top, #cfcfcf, #3fcbee);
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 184, 182, 0.9);
+}
+
+.img-container {
+  height: 100%;
+  width: 100%;
+  background: hsla(2deg, 100%, 60%, 0.9);
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 5%;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(50px);
-    overflow: hidden;
-    width: clamp(200px, 40%, 600px);
-    height: clamp(300px, 50%, 700px);
+  backdrop-filter: blur(50px);
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: hsl(2deg 99% 63%);
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(4px, 5%, 120px);
+  height: 80%;
+  margin-top: clamp(0px, 20%, 600px);
+}
+
+.login-container > div {
+  margin: clamp(8px, 4%, 32px);
 }
 
 .input {
-    width: clamp(172px, 90%, 500px);
+  width: clamp(172px, 90%, 500px);
 }
 
 .button {
-    width: clamp(172px, 90%, 500px);
+  width: clamp(172px, 90%, 500px);
 }

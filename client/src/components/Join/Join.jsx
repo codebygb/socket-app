@@ -2,6 +2,7 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./Join.css";
+import ChatImage from "../../images/ChatImage";
 
 function Join() {
   const history = useHistory();
@@ -24,37 +25,43 @@ function Join() {
 
   return (
     <div className="main-container">
+      <div className="img-container">
+        <ChatImage />
+      </div>
       <div className="container">
-        <div>
-          <h1>JOIN</h1>
+        <div className="login-container">
+          <div>
+            <h1>JOIN</h1>
+          </div>
+          <TextField
+            fullWidth
+            size="medium"
+            variant="outlined"
+            label="Name"
+            className="input"
+            type="text"
+            onChange={handleNameChange}
+            id="name"
+          />
+          <TextField
+            fullWidth
+            variant="outlined"
+            className="input"
+            label="Room"
+            type="text"
+            onChange={handleRoomChange}
+            id="room"
+          />
+          <Button
+            fullWidth
+            className="button"
+            variant="outlined"
+            color="primary"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </div>
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Name"
-          className="input"
-          type="text"
-          onChange={handleNameChange}
-          id="name"
-        />
-        <TextField
-          fullWidth
-          variant="outlined"
-          className="input"
-          label="Room"
-          type="text"
-          onChange={handleRoomChange}
-          id="room"
-        />
-        <Button
-          fullWidth
-          className="button"
-          variant="outlined"
-          color="primary"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
       </div>
     </div>
   );
