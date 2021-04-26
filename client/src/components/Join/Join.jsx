@@ -2,7 +2,6 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./Join.css";
-import ChatImage from "../../images/ChatImage";
 import rocket from "../../images/rocket.png";
 import chat from "../../images/chat.png";
 
