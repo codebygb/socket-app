@@ -1,0 +1,22 @@
+.input-root {
+  padding: "2px 4px";
+  display: "flex";
+  align-items: "center";
+  width: 400;
+  background-color: hsl(2deg, 10%, 10%);
+  flex-direction: column;
+}
+
+.m-input {
+  margin-left: 8;
+  flex: 1;
+}
+
+.input-divider {
+  height: 28;
+  margin: 4;
+}
+
+.sendbutton {
+  padding: 10;
+}

@@ -43,14 +43,21 @@ function Chat() {
   return (
     <div className="root-container">
       <div className="chat-container">
-        <ChatBar name={name} room={room} />
-        <Messages messages={messages} currUser={name} />
-        <div className="message-input">
-          <Input
-            message={message}
-            setMessage={setMessage}
-            sendMessage={sendMessage}
-          />
+        <div className="contacts-container"></div>
+        <div className="messages-container">
+          <div className="header">
+            <ChatBar name={name} room={room} />
+          </div>
+          <div className="message-layout">
+            <Messages messages={messages} currUser={name} />
+          </div>
+          <div className="message-input">
+            <Input
+              message={message}
+              setMessage={setMessage}
+              sendMessage={sendMessage}
+            />
+          </div>
         </div>
       </div>
     </div>

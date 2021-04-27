@@ -1,14 +1,42 @@
 .chatbar {
-  width: 100%;
+  --avatar-size: 2rem;
   display: grid;
-  grid-template-columns: 1fr 30% 30% 30% 1fr;
-  justify-content: center;
+  grid-template-columns: 4rem 1fr 12%;
+  grid-column-gap: 1px;
+  grid-row-gap: 4px;
   align-items: center;
 }
 
-.uname {
-  align-self: center;
-  margin-left: 4px;
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.circle {
+  background-color: #ccc;
+  border-radius: 50%;
+  height: 2rem;
+  text-align: center;
+  width: 2rem;
+}
+
+.initials {
+  font-size: calc(2rem / 2); /* 50% of parent */
+  line-height: 1;
+  position: relative;
+  top: calc(2rem / 4); /* 25% of parent */
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.info div {
+  font-size: 1rem;
 }
 
 .rname {
@@ -17,6 +45,12 @@
   margin-right: 4px;
 }
 
-.avatar {
-  margin-right: 4px;
+@media screen and (max-width: 600px) {
+  .chatbar {
+    grid-template-columns: 20% 1fr 20%;
+  }
+  .chat-container {
+    width: 90%;
+    height: 90%;
+  }
 }

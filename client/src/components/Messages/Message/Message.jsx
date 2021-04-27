@@ -1,4 +1,3 @@
-import { Paper, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import "./Message.css";
 
@@ -8,14 +7,14 @@ export default function Message(props) {
   const [isCurrUser] = useState(currUser === user);
 
   return isCurrUser ? (
-    <Paper key={ts} variant="outlined" className="message-you">
-      <Typography>You</Typography>
-      <Typography>{text}</Typography>
-    </Paper>
+    <div key={ts} className="message-you">
+      <div className="sender">You</div>
+      <div className="response">{text}</div>
+    </div>
   ) : (
-    <Paper key={ts} variant="outlined" className="message-other">
-      <Typography>{user}</Typography>
-      <Typography>{text}</Typography>
-    </Paper>
+    <div key={ts} className="message-other">
+      <div className="sender">{user}</div>
+      <div className="response">{text}</div>
+    </div>
   );
 }
