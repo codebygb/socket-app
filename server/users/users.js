@@ -13,16 +13,19 @@ const addUser = (id, username, room) => {
 };
 
 const removeUser = (id) => {
-  return users.filter((u) => u.id !== id);
+  const index = users.findIndex((u) => u.id === id);
+  if (index > -1) {
+    return users.splice(index, 1)[0];
+  }
 };
 
 const getUser = (id) => users.find((u) => u.id === id);
 
-const getUserInRoom = (room) => users.filter((u) => u.room === room);
+const getUsersInRoom = (room) => users.filter((u) => u.room === room);
 
 module.exports = {
   addUser,
   removeUser,
   getUser,
-  getUserInRoom,
+  getUsersInRoom,
 };

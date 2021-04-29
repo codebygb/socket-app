@@ -6,6 +6,8 @@ const io = require("socket.io")(server, {
     origin: "*",
     methods: ["GET", "PUT", "POST"],
   },
+  pingInterval: 10000,
+  pingTimeout: 5000,
 });
 
 const PORT = process.env.PORT || 5000;
@@ -16,7 +18,7 @@ const {
   addUser,
   removeUser,
   getUser,
-  getUserInRoom,
+  getUsersInRoom,
 } = require("./users/users");
 
 app.use(cors());
@@ -25,13 +27,22 @@ app.use(router);
 io.on("connection", (socket) => {
   socket.on("join", ({ name, room }, cb) => {
     const { user, error } = addUser(socket.id, name, room);
+
     if (error) return cb(error);
+
     socket.emit("message", {
       user: "admin",
       text: `Welcome to ${room}, ${name}`,
       ts: +new Date(),
     });
+
     socket.join(room);
+
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
+
     socket.broadcast.to(room).emit("message", {
       user: "admin",
       text: `${name} has joined.`,
@@ -52,7 +63,33 @@ io.on("connection", (socket) => {
   });
 
   socket.on("left", () => {
-    console.log("User Left");
+    const user = removeUser(socket.id);
+    if (user) {
+      socket.broadcast.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has left.`,
+        ts: +new Date(),
+      });
+      socket.broadcast.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
+  });
+
+  socket.on("disconnect", () => {
+    const user = removeUser(socket.id);
+    if (user) {
+      socket.broadcast.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has left.`,
+        ts: +new Date(),
+      });
+      socket.broadcast.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 

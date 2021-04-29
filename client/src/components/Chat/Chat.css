@@ -11,9 +11,14 @@
   background: linear-gradient(120deg, var(--primary), var(--secondary));
 }
 
+.contacts-container {
+  overflow-y: auto;
+}
+
 .chat-container {
   width: 70%;
   height: 70%;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 50px 50px 100px #945e5e, -50px -50px 100px #ffc4c4;
   border-radius: 34px;
@@ -25,10 +30,10 @@
 }
 
 .messages-container {
+  max-height: 70vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 10% 1fr 10%;
-  height: 100%;
 }
 
 .contacts-container {
@@ -41,6 +46,7 @@
 }
 
 .message-layout {
+  overflow: auto;
   display: grid;
   padding: 0;
 }
